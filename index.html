@@ -10,9 +10,14 @@
 <button id="bouton-lancer-script">Lancer le script Python</button>
 <script>
     document.getElementById("bouton-lancer-script").addEventListener("click", function() {
-      $.get("/body_cam.py", function(data) {
-        // traitement de la réponse du script ici
-      });
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "./count.py");
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          console.log(xhr.responseText)
+        }
+      };
+      xhr.send();
     });
 </script>
 </body>
