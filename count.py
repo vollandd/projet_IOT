@@ -4,7 +4,7 @@ from tracker import *
 import numpy as np
 model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True)
 
-cap=cv2.VideoCapture(0)
+cap=cv2.VideoCapture(1)
 
 
 def POINTS(event, x, y, flags, param):
@@ -18,11 +18,11 @@ cv2.setMouseCallback('FRAME', POINTS)
 
 tracker = Tracker()
 
-area_1 = [(479,405),(479,435),(689,435),(689,405)]
+area_1 = [(777,400),(717,410),(777,435),(837,425)]
 area1 = set()
 while True:
     ret,frame=cap.read()
-    frame=cv2.resize(frame,(1920,1080))
+    frame=cv2.resize(frame,(1020,540))
     cv2.polylines(frame,[np.array(area_1,np.int32)],True,(0,255,0),3)
     results = model(frame)
     list=[]
